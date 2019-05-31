@@ -141,7 +141,7 @@ def wait_for_panos(device, timeout):
         try:
             element_response = device.op(cmd="show jobs all")
         except PanDeviceError as msg:
-            print("PAN-OS is not ready trying again!")
+            print("PAN-OS is not ready yet. trying again!")
             time.sleep(5)
             pass
         else:
