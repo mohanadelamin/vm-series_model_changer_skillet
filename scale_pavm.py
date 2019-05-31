@@ -65,6 +65,7 @@ def get_service_instance(host,user,password,port,context):
 
 def get_vm(service_instance,vm):
     try:
+        print("Searching for VM %s in the environment.")
         content = service_instance.RetrieveContent()
         # Search for all VMs
         objview = content.viewManager.CreateContainerView(content.rootFolder,
@@ -128,7 +129,7 @@ def change_vcpu(vm, vcpu_nu):
 
 
 def change_memory(vm, mem_size):
-    mem_size = long(mem_size)
+    mem_size = int(mem_size)
     cspec = vim.vm.ConfigSpec()
     cspec.memoryMB = mem_size
     WaitForTask(vm.Reconfigure(cspec))
@@ -172,9 +173,9 @@ def apply_api_key(device, api_key):
 def deactivate_license(device):
     try:
         device.op(cmd='<request><license><deactivate><VM-Capacity><mode>auto</mode></VM-Capacity></deactivate></license></request>', cmd_xml=False)
-        print("License deactivated")
+        print("License deactivated!")
         # Give license API 10 seconds to finish before moving forward.
-        time.sleep(10)
+        time.sleep(15)
     except PanDeviceError as msg:
         print(msg)
     return
@@ -183,9 +184,9 @@ def deactivate_license(device):
 def activate_license(device, auth_code):
     try:
         device.op(cmd='<request><license><fetch><auth-code>%s</auth-code></fetch></license></request>' % auth_code, cmd_xml=False)
-        print("License activated")
+        print("License activated!")
         # Give license API 10 seconds to finish before moving forward.
-        time.sleep(10)
+        time.sleep(15)
     except PanDeviceError as msg:
         pass
     return
@@ -261,19 +262,14 @@ def main():
                 # De active the current license.
                 apply_api_key(device, api_key)
                 deactivate_license(device)
+                shutdown_vm(vmobj)
+                change_vcpu(vmobj,vcpu)
+                change_memory(vmobj,memory)
+                poweron_vm(vmobj)
                 timeout = time.time() + 60 * 5
                 # Make sure PAN-OS is ready to accept commands. wait for 5 minutes
                 if wait_for_panos(device, timeout):
-                    # Power down the VM, change CPU and Memory and power it on again.
-
-                    shutdown_vm(vmobj)
-                    change_vcpu(vmobj,vcpu)
-                    change_memory(vmobj,memory)
-                    poweron_vm(vmobj)
-                    timeout = time.time() + 60 * 5
-                    # Make sure PAN-OS is ready to accept commands. wait for 5 minutes
-                    if wait_for_panos(device, timeout):
-                        activate_license(device, auth_code)
+                    activate_license(device, auth_code)
         else:
             exit(1)
 

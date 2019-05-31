@@ -1,5 +1,5 @@
-## Deploying Standalone VM-Series in vSphere##
-Skillet to upgrade or downgrade the VM-Series model. for example moving from VM-50 to VM-100 or vise versa.
+## Deploying Standalone VM-Series in vSphere ##
+Skillet to upgrade or downgrade the VM-Series model in vSphere environment. for example moving from VM-50 to VM-100 or vice versa.
  
 
 
@@ -9,7 +9,7 @@ Skillet to upgrade or downgrade the VM-Series model. for example moving from VM-
 ## Usage ##
 
 
-## Support Policy
+## Support Policy ##
 
 The code and templates in the repo are released under an as-is, best effort,
 support policy. These scripts should be seen as community supported and
