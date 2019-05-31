@@ -65,7 +65,7 @@ def get_service_instance(host,user,password,port,context):
 
 def get_vm(service_instance,vm):
     try:
-        print("Searching for VM %s in the environment.")
+        print("Searching for VM %s in the environment." % vmobj.name)
         content = service_instance.RetrieveContent()
         # Search for all VMs
         objview = content.viewManager.CreateContainerView(content.rootFolder,
