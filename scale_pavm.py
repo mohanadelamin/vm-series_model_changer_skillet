@@ -106,7 +106,7 @@ def shutdown_vm(vmobj):
 
 def poweron_vm(vmobj):
     try:
-        print("Powering on VM: %s" % vmobj.name)
+        print("Powering on the VM %s and activating the license. Please wait!" % vmobj.name)
         task = vmobj.PowerOn()
         while task.info.state not in [vim.TaskInfo.State.success,
                                       vim.TaskInfo.State.error]:
