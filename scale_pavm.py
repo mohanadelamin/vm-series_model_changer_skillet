@@ -270,6 +270,7 @@ def main():
                 # Make sure PAN-OS is ready to accept commands. wait for 5 minutes
                 if wait_for_panos(device, timeout):
                     activate_license(device, auth_code)
+                    print("Model upgraded to %s successfully!" % args.model)
         else:
             exit(1)
 
