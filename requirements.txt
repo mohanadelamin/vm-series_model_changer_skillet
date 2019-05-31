@@ -1,0 +1,3 @@
+pandevice
+pyVmomi
+pyVim
