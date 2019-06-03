@@ -5,7 +5,7 @@ name: vm-series_model_changer
 label: Skillet to upgrade or downgrade the VM-Series model in vShere Environment.
 
 # description is a longer more informative version of a label
-description: This skillet can be used to upgrade or downgrade the VM-Series model (Horzintal scalling) in vShere Environment.
+description: This skillet can be used to upgrade or downgrade the VM-Series model (Virtical scalling) in vShere Environment.
 
 # type instructs Panhandler how to consume this skillet
 type: python3
