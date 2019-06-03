@@ -1,7 +1,7 @@
 ## Deploying Standalone VM-Series in vSphere ##
 Skillet to upgrade or downgrade the VM-Series model in vSphere environment. for example moving from VM-50 to VM-100 or vice versa.
  
-This skillet is using PANDevice Python framework as well as VMware vSphere API Python pinding 
+This skillet is using PANDevice Python framework as well as VMware vSphere API Python binding 
 pyvmomi in order to interact with both vSphere infrastructure and PAN-OS to execute the scaling up or Down event. (For example moving from VM-50 to VM-100)
   
 
